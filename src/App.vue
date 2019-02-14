@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <OtpInput
+      input-classes="otp-input"
+      separator="-"
+      :num-inputs="4"
+      :should-auto-focus="true"
+      :is-input-num="true"
+      @on-complete="handleOnComplete"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import OtpInput from './components';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld,
+    OtpInput,
+  },
+  methods: {
+    handleOnComplete(value) {
+      console.log('OTP: ', value);
+    },
   },
 };
 </script>
 
 <style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    margin: 0 10px;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    textalign: "center";
+    &.error {
+      border: 1px solid red !important;
+    }
+  }
 </style>
