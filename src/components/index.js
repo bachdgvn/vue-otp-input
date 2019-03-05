@@ -1,3 +1,3 @@
-import OtpInput from './OtpInput.vue';
+import VieOtpInput from './VieOtpInput.vue';
 
-export default OtpInput;
+export default VieOtpInput;

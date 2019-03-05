@@ -11,27 +11,27 @@
 To install the latest stable version:
 
 ```
-npm install --save vue-otp-input
+npm install --save @bachdgvn/vue-otp-input
 ```
 
 Basic usage:
 
 ```javascript
-import OtpInput from "vue-otp-input";
+import VieOtpInput from "@bachdgvn/vue-otp-input";
 
-Vue.component("otp-input", OtpInput);
+Vue.component("vie-otp-input", VieOtpInput);
 ```
 
 ```javascript
 <template>
   <div>
-    <otp-input
+    <vie-otp-input
       inputClasses="otp-input"
       :numInputs="4"
        separator="-"
       :shouldAutoFocus="true"
       @on-complete="handleOnComplete"
-    ></otp-input>
+    />
   </div>
 </template>
 
@@ -119,6 +119,6 @@ export default {
   </tr>
   <tr>
     <td>on-complete</td>
-    <td>Returns OTP code typed in inputs.</td>
+    <td>Return OTP code typed in inputs.</td>
   </tr>
 </table>

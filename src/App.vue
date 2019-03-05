@@ -1,6 +1,6 @@
 <template>
   <div>
-    <OtpInput
+    <vie-otp-input
       input-classes="otp-input"
       separator="-"
       :num-inputs="4"
@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import OtpInput from './components';
+import VieOtpInput from './components';
 
 export default {
   name: 'App',
   components: {
-    OtpInput,
+    'vie-otp-input': VieOtpInput,
   },
   methods: {
     handleOnComplete(value) {
