@@ -51,6 +51,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    value: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -58,6 +62,10 @@ export default {
       otp: [],
       oldOtp: [],
     };
+  },
+  mounted() {
+    const v = this.value.split('');
+    this.otp = v.splice(0, this.numInputs);
   },
   methods: {
     handleOnFocus(index) {
@@ -92,6 +100,7 @@ export default {
     // Change OTP value at focused input
     changeCodeAtFocus(value) {
       this.otp[this.activeInput] = value;
+      this.$emit('input', this.otp.join(''));
       this.checkFilledAllInputs();
     },
     // Handle pasted OTP
