@@ -91,7 +91,7 @@ export default {
     },
     // Change OTP value at focused input
     changeCodeAtFocus(value) {
-      this.otp[this.activeInput] = value;
+      this.$set(this.otp, this.activeInput, value);
       this.checkFilledAllInputs();
     },
     // Handle pasted OTP
