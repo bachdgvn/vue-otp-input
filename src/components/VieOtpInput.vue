@@ -86,10 +86,6 @@ export default {
     focusPrevInput() {
       this.focusInput(this.activeInput - 1);
     },
-    // Focus on last input
-    focusLastInput() {
-      this.focusInput(this.numInputs);
-    },
     // Change OTP value at focused input
     changeCodeAtFocus(value) {
       this.$set(this.otp, this.activeInput, value);
@@ -109,7 +105,7 @@ export default {
       const currentCharsInOtp = this.otp.slice(0, this.activeInput);
       const combinedWithPastedData = currentCharsInOtp.concat(pastedData);
       this.$set(this, 'otp', combinedWithPastedData.slice(0, this.numInputs));
-      this.focusLastInput()
+      this.focusInput(combinedWithPastedData.slice(0, this.numInputs).length);
       return this.checkFilledAllInputs();
     },
     handleOnChange(value) {
