@@ -28,17 +28,17 @@ export default {
 </script>
 
 <style lang="less">
-  .otp-input {
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-    margin: 0 10px;
-    font-size: 20px;
-    border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    textalign: "center";
-    &.error {
-      border: 1px solid red !important;
-    }
-  }
+.otp-input {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-align: "center";
+}
+.otp-input.error {
+  border: 1px solid red !important;
+}
 </style>

@@ -29,6 +29,12 @@ export default {
     separator: {
       type: String,
     },
+    numInputs: {
+      type: Number,
+    },
+    numIndex: {
+      type: Number
+    },
     focus: {
       type: Boolean,
     },
@@ -74,9 +80,11 @@ export default {
   methods: {
     handleOnChange() {
       if (this.model.length > 1) {
-        this.model = this.model.slice(0, 1);
+        if (this.numInputs == this.numIndex + 1) {
+          this.model = this.model.split("").pop()
+        }
       }
-      return this.$emit('on-change', this.model);
+      return this.$emit('on-change', this.model)
     },
     handleOnKeyDown(event) {
       return this.$emit('on-keydown', event);
@@ -90,7 +98,7 @@ export default {
     },
     handleOnBlur() {
       return this.$emit('on-blur');
-    },
-  },
+    }
+  }
 };
 </script>

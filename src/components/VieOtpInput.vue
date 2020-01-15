@@ -3,9 +3,11 @@
     <SingleOtpInput
       v-for="(item, i) in numInputs"
       :key="i"
+      :numIndex="i"
       :focus="activeInput === i"
       :value="otp[i]"
       :separator="separator"
+      :numInputs="numInputs"
       :input-classes="inputClasses"
       :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
@@ -70,7 +72,7 @@ export default {
     checkFilledAllInputs() {
       if (
         this.otp.join('').length === this.numInputs
-          && this.otp.join('') !== this.oldOtp.join('')
+        && this.otp.join('') !== this.oldOtp.join('')
       ) {
         this.oldOtp = Object.assign([], this.otp);
         return this.$emit('on-complete', this.otp.join(''));
@@ -119,6 +121,9 @@ export default {
       switch (event.keyCode) {
         case BACKSPACE:
           event.preventDefault();
+          if (this.activeInput + 1 == this.numInputs) {
+            event.target.value = ''
+          }
           this.changeCodeAtFocus('');
           this.focusPrevInput();
           break;
