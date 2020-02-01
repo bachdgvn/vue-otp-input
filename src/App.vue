@@ -6,6 +6,7 @@
       :num-inputs="4"
       :should-auto-focus="true"
       :is-input-num="true"
+      @on-change="handleOnChange"
       @on-complete="handleOnComplete"
     />
   </div>
@@ -21,7 +22,10 @@ export default {
   },
   methods: {
     handleOnComplete(value) {
-      console.log('OTP: ', value);
+      console.log('OTP completed: ', value);
+    },
+    handleOnChange(value) {
+      console.log('OTP changed: ', value);
     },
   },
 };

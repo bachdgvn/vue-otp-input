@@ -118,7 +118,16 @@ export default {
     <th>Description</th>
   </tr>
   <tr>
+     <td>on-change</td>
+     <td>Return OTP code was changing when we made a change in inputs.</td>
+    </tr>
+  <tr>
     <td>on-complete</td>
     <td>Return OTP code typed in inputs.</td>
   </tr>
 </table>
+
+## Changelog
+* **v1.0.2** - Update first stable version.
+* **v1.0.3** - Fix [#1](https://github.com/bachdgvn/vue-otp-input/issues/1): Fist and last character not being modified and pasting OTP codes.
+* **v1.0.4** - Support @on-change event and fix bug for firing @on-complete every time we press keyboard.

@@ -13,7 +13,7 @@
       @on-change="handleOnChange"
       @on-keydown="handleOnKeyDown"
       @on-paste="handleOnPaste"
-      @on-focus="handleOnFocus(i);"
+      @on-focus="handleOnFocus(i)"
       @on-blur="handleOnBlur"
     />
   </div>
@@ -69,7 +69,6 @@ export default {
     // Helper to return OTP from input
     checkFilledAllInputs() {
       if (this.otp.join('').length === this.numInputs) {
-        this.oldOtp = Object.assign([], this.otp);
         return this.$emit('on-complete', this.otp.join(''));
       }
       return 'Wait until the user enters the required number of characters';
@@ -88,8 +87,12 @@ export default {
     },
     // Change OTP value at focused input
     changeCodeAtFocus(value) {
+      this.oldOtp = Object.assign([], this.otp);
       this.$set(this.otp, this.activeInput, value);
-      this.checkFilledAllInputs();
+      if (this.oldOtp.join('') !== this.otp.join('')) {
+        this.$emit('on-change', this.otp.join(''));
+        this.checkFilledAllInputs();
+      }
     },
     // Handle pasted OTP
     handleOnPaste(event) {
