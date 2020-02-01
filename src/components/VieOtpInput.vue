@@ -68,10 +68,7 @@ export default {
     },
     // Helper to return OTP from input
     checkFilledAllInputs() {
-      if (
-        this.otp.join('').length === this.numInputs
-          && this.otp.join('') !== this.oldOtp.join('')
-      ) {
+      if (this.otp.join('').length === this.numInputs) {
         this.oldOtp = Object.assign([], this.otp);
         return this.$emit('on-complete', this.otp.join(''));
       }
@@ -91,7 +88,7 @@ export default {
     },
     // Change OTP value at focused input
     changeCodeAtFocus(value) {
-      this.otp[this.activeInput] = value;
+      this.$set(this.otp, this.activeInput, value);
       this.checkFilledAllInputs();
     },
     // Handle pasted OTP
@@ -107,7 +104,8 @@ export default {
       // Paste data from focused input onwards
       const currentCharsInOtp = this.otp.slice(0, this.activeInput);
       const combinedWithPastedData = currentCharsInOtp.concat(pastedData);
-      this.otp = combinedWithPastedData.slice(0, this.numInputs);
+      this.$set(this, 'otp', combinedWithPastedData.slice(0, this.numInputs));
+      this.focusInput(combinedWithPastedData.slice(0, this.numInputs).length);
       return this.checkFilledAllInputs();
     },
     handleOnChange(value) {
