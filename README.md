@@ -17,15 +17,15 @@ npm install --save @bachdgvn/vue-otp-input
 Basic usage:
 
 ```javascript
-import VieOtpInput from "@bachdgvn/vue-otp-input";
+import OtpInput from "@bachdgvn/vue-otp-input";
 
-Vue.component("vie-otp-input", VieOtpInput);
+Vue.component("v-otp-input", OtpInput);
 ```
 
 ```javascript
 <template>
   <div>
-    <vie-otp-input
+    <v-otp-input
       inputClasses="otp-input"
       :numInputs="4"
        separator="-"

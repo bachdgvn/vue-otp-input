@@ -29,7 +29,7 @@ const RIGHT_ARROW = 39;
 const DELETE = 46;
 
 export default {
-  name: 'VieOtpInput',
+  name: 'OtpInput',
   components: {
     SingleOtpInput,
   },
