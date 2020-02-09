@@ -40,7 +40,6 @@ export default {
     font-size: 20px;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    textalign: "center";
     &.error {
       border: 1px solid red !important;
     }
