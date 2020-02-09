@@ -45,4 +45,9 @@ export default {
       border: 1px solid red !important;
     }
   }
+  .otp-input::-webkit-inner-spin-button,
+  .otp-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 </style>
