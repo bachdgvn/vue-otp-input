@@ -79,7 +79,14 @@ export default {
       return this.$emit('on-change', this.model);
     },
     handleOnKeyDown(event) {
-      return this.$emit('on-keydown', event);
+      // Disallow non-numerical characters such as "." and "e"
+      const keyevent = (event) || window.event;
+      const charCode = (keyevent.which) ? keyevent.which : keyevent.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46) {
+        event.preventDefault();
+      } else {
+        this.$emit('on-keydown', event);
+      }
     },
     handleOnPaste(event) {
       return this.$emit('on-paste', event);
