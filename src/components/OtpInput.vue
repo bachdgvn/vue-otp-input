@@ -115,6 +115,13 @@ export default {
       this.changeCodeAtFocus(value);
       this.focusNextInput();
     },
+    clearInput() {
+      if(this.otp.length > 0) {
+        this.$emit('on-change', '');
+      }
+      this.otp = [];
+      this.activeInput = 0;
+    },
     // Handle cases of backspace, delete, left arrow, right arrow
     handleOnKeyDown(event) {
       switch (event.keyCode) {
