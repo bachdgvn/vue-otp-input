@@ -83,7 +83,7 @@ export default {
       const keyevent = (event) || window.event;
       const charCode = (keyevent.which) ? keyevent.which : keyevent.keyCode;
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46) {
-        event.preventDefault();
+        keyevent.preventDefault();
       } else {
         this.$emit('on-keydown', event);
       }
