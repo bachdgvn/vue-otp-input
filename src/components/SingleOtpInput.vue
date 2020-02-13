@@ -79,13 +79,16 @@ export default {
       return this.$emit('on-change', this.model);
     },
     handleOnKeyDown(event) {
-      // Disallow non-numerical characters such as "." and "e"
+      // Only allow characters 0-9, DEL, Backspace and Pasting
       const keyevent = (event) || window.event;
       const charCode = (keyevent.which) ? keyevent.which : keyevent.keyCode;
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46) {
-        keyevent.preventDefault();
-      } else {
+      if ((charCode >= 48 && charCode <= 57)
+          || (charCode === 8)
+          || (charCode === 86)
+          || (charCode === 46)) {
         this.$emit('on-keydown', event);
+      } else {
+        keyevent.preventDefault();
       }
     },
     handleOnPaste(event) {
