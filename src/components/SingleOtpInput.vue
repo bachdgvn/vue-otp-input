@@ -79,7 +79,17 @@ export default {
       return this.$emit('on-change', this.model);
     },
     handleOnKeyDown(event) {
-      return this.$emit('on-keydown', event);
+      // Only allow characters 0-9, DEL, Backspace and Pasting
+      const keyevent = (event) || window.event;
+      const charCode = (keyevent.which) ? keyevent.which : keyevent.keyCode;
+      if ((charCode >= 48 && charCode <= 57)
+          || (charCode === 8)
+          || (charCode === 86)
+          || (charCode === 46)) {
+        this.$emit('on-keydown', event);
+      } else {
+        keyevent.preventDefault();
+      }
     },
     handleOnPaste(event) {
       return this.$emit('on-paste', event);
