@@ -80,20 +80,20 @@ export default {
     },
     handleOnKeyDown(event) {
       // Only allow characters 0-9, DEL, Backspace and Pasting
-      const keyevent = (event) || window.event;
-      const charCode = (keyevent.which) ? keyevent.which : keyevent.keyCode;
+      const keyEvent = (event) || window.event;
+      const charCode = (keyEvent.which) ? keyEvent.which : keyEvent.keyCode;
       if (this.isCodeNumeric(charCode)
           || (charCode === 8)
           || (charCode === 86)
           || (charCode === 46)) {
         this.$emit('on-keydown', event);
       } else {
-        keyevent.preventDefault();
+        keyEvent.preventDefault();
       }
     },
     isCodeNumeric(charCode) {
       // numeric keys and numpad keys
-      return (charCode >= 48 && charCode <= 57) || (key >= 96 && key <= 105)
+      return (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105)
     },
     handleOnPaste(event) {
       return this.$emit('on-paste', event);
