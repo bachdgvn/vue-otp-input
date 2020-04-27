@@ -82,7 +82,7 @@ export default {
       // Only allow characters 0-9, DEL, Backspace and Pasting
       const keyevent = (event) || window.event;
       const charCode = (keyevent.which) ? keyevent.which : keyevent.keyCode;
-      if ((charCode >= 48 && charCode <= 57)
+      if (this.isCodeNumeric(charCode)
           || (charCode === 8)
           || (charCode === 86)
           || (charCode === 46)) {
@@ -90,6 +90,10 @@ export default {
       } else {
         keyevent.preventDefault();
       }
+    },
+    isCodeNumeric(charCode) {
+      // numeric keys and numpad keys
+      return (charCode >= 48 && charCode <= 57) || (key >= 96 && key <= 105)
     },
     handleOnPaste(event) {
       return this.$emit('on-paste', event);

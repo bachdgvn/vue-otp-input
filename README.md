@@ -2,7 +2,7 @@
 
 > A fully customizable, OTP(one-time password) input component built with Vue 2.x.
 
-![Imgur](https://i.imgur.com/EaVHdtb.gif)
+![Gifphy](https://media.giphy.com/media/W4RTzsjgQF447EfNPX/giphy.gif)
 
 [Live Demo](https://zlx025mxpp.codesandbox.io/)
 
