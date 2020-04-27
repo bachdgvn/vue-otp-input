@@ -161,6 +161,7 @@ export default {
 </table>
 
 ## Changelog
+* **v1.0.7** - Fix #23: Not accepting numbers from numeric keypad in external keyboard
 * **v1.0.6** - Add feature to disallow certain characters like "." or "e".
 * **v1.0.5** - Support clearInput() methods for clearing all otp inputs.
 * **v1.0.4** - Support @on-change event and fix bug for firing @on-complete every time we press keyboard.
