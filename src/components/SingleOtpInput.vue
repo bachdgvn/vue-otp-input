@@ -2,10 +2,10 @@
   <div style="display: flex; align-items: center;">
     <input
       :class="inputClasses"
-      :type="isInputNum ? 'number' : 'tel'"
-      min="0"
-      max="9"
       ref="input"
+      :type="isInputNum ? 'number' : 'text'"
+      :min="isInputNum ? '0' : ''"
+      :max="isInputNum ? '9' : ''"
       v-model="model"
       @input="handleOnChange"
       @keydown="handleOnKeyDown"
@@ -13,9 +13,7 @@
       @focus="handleOnFocus"
       @blur="handleOnBlur"
     />
-    <span v-if="!isLastChild && separator">
-      <span v-html="separator"></span>
-    </span>
+    <span v-if="separator" class="v-otp-separator" v-html="separator" />
   </div>
 </template>
 
@@ -40,9 +38,7 @@ export default {
     },
     isInputNum: {
       type: Boolean,
-    },
-    isLastChild: {
-      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -65,7 +61,7 @@ export default {
     focus(newFocusValue, oldFocusValue) {
       // Check if focusedInput changed
       // Prevent calling function if input already in focus
-      if (oldFocusValue !== newFocusValue && (this.$refs.input && this.focus)) {
+      if (oldFocusValue !== newFocusValue && this.$refs.input && this.focus) {
         this.$refs.input.focus();
         this.$refs.input.select();
       }
@@ -76,34 +72,41 @@ export default {
       if (this.model.length > 1) {
         this.model = this.model.slice(0, 1);
       }
-      return this.$emit('on-change', this.model);
+      return this.$emit('change', this.model);
     },
     handleOnKeyDown(event) {
       // Only allow characters 0-9, DEL, Backspace and Pasting
-      const keyEvent = (event) || window.event;
-      const charCode = (keyEvent.which) ? keyEvent.which : keyEvent.keyCode;
-      if (this.isCodeNumeric(charCode)
-          || (charCode === 8)
-          || (charCode === 86)
-          || (charCode === 46)) {
-        this.$emit('on-keydown', event);
+      const keyEvent = event || window.event;
+      const charCode = keyEvent.which ? keyEvent.which : keyEvent.keyCode;
+      const allowedCharCodes = [8, 86, 46];
+      if (!this.isInputNum) {
+        this.$emit('keydown', event);
+      } else if (
+        this.isCodeNumeric(charCode) ||
+        allowedCharCodes.includes(charCode)
+      ) {
+        this.$emit('keydown', event);
       } else {
         keyEvent.preventDefault();
       }
     },
+
     isCodeNumeric(charCode) {
       // numeric keys and numpad keys
-      return (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105)
+      return (
+        (charCode >= 48 && charCode <= 57) ||
+        (charCode >= 96 && charCode <= 105)
+      );
     },
     handleOnPaste(event) {
-      return this.$emit('on-paste', event);
+      return this.$emit('paste', event);
     },
     handleOnFocus() {
       this.$refs.input.select();
-      return this.$emit('on-focus');
+      return this.$emit('focus');
     },
     handleOnBlur() {
-      return this.$emit('on-blur');
+      return this.$emit('blur');
     },
   },
 };
