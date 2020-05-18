@@ -10,11 +10,11 @@
       :input-classes="inputClasses"
       :should-auto-focus="shouldAutoFocus"
       :is-input-num="isInputNum"
-      @on-change="handleOnChange"
-      @on-keydown="handleOnKeyDown"
-      @on-paste="handleOnPaste"
-      @on-focus="handleOnFocus(i)"
-      @on-blur="handleOnBlur"
+      @change="handleOnChange"
+      @keydown="handleOnKeyDown"
+      @paste="handleOnPaste"
+      @focus="handleOnFocus(i)"
+      @blur="handleOnBlur"
     />
   </div>
 </template>
