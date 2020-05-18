@@ -39,7 +39,6 @@ export default {
     },
     separator: {
       type: String,
-      default: '',
     },
     inputClasses: {
       type: String,

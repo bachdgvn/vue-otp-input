@@ -13,7 +13,7 @@
       @focus="handleOnFocus"
       @blur="handleOnBlur"
     />
-    <span class="v-otp-separator" v-html="separator" />
+    <span v-if="separator" class="v-otp-separator" v-html="separator" />
   </div>
 </template>
 
@@ -76,12 +76,15 @@ export default {
     },
     handleOnKeyDown(event) {
       // Only allow characters 0-9, DEL, Backspace and Pasting
-      const keyEvent = (event) || window.event;
-      const charCode = (keyEvent.which) ? keyEvent.which : keyEvent.keyCode;
+      const keyEvent = event || window.event;
+      const charCode = keyEvent.which ? keyEvent.which : keyEvent.keyCode;
       const allowedCharCodes = [8, 86, 46];
       if (!this.isInputNum) {
         this.$emit('keydown', event);
-      } else if (this.isCodeNumeric(charCode) || allowedCharCodes.includes(charCode)) {
+      } else if (
+        this.isCodeNumeric(charCode) ||
+        allowedCharCodes.includes(charCode)
+      ) {
         this.$emit('keydown', event);
       } else {
         keyEvent.preventDefault();
@@ -90,7 +93,10 @@ export default {
 
     isCodeNumeric(charCode) {
       // numeric keys and numpad keys
-      return (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105);
+      return (
+        (charCode >= 48 && charCode <= 57) ||
+        (charCode >= 96 && charCode <= 105)
+      );
     },
     handleOnPaste(event) {
       return this.$emit('paste', event);
