@@ -1,13 +1,13 @@
 <template>
-  <div style="display: flex">
+  <div style="display: flex;">
     <SingleOtpInput
       v-for="(item, i) in numInputs"
       :key="i"
+      class="v-otp-input"
       :focus="activeInput === i"
       :value="otp[i]"
       :separator="separator"
       :input-classes="inputClasses"
-      :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
       :is-input-num="isInputNum"
       @on-change="handleOnChange"
@@ -39,7 +39,7 @@ export default {
     },
     separator: {
       type: String,
-      default: '**',
+      default: '',
     },
     inputClasses: {
       type: String,
@@ -50,6 +50,9 @@ export default {
     shouldAutoFocus: {
       type: Boolean,
       default: false,
+    },
+    value: {
+      type: [String, Number],
     },
   },
   data() {
@@ -116,7 +119,7 @@ export default {
       this.focusNextInput();
     },
     clearInput() {
-      if(this.otp.length > 0) {
+      if (this.otp.length > 0) {
         this.$emit('on-change', '');
       }
       this.otp = [];
@@ -147,5 +150,15 @@ export default {
       }
     },
   },
+  watch: {
+    otp() {
+      this.$emit('input', this.otp.join(''));
+    },
+  },
 };
 </script>
+<style scoped>
+.v-otp-input:last-child >>> .v-otp-separator {
+  display: none;
+}
+</style>
