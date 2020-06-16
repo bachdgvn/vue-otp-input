@@ -1,12 +1,14 @@
 <template>
   <div style="display: flex; align-items: center;">
     <input
-      :class="inputClasses"
-      :type="isInputNum ? 'number' : 'tel'"
+      ref="input"
+      :type="inputType"
       min="0"
       max="9"
-      ref="input"
+      maxlength="1"
+      pattern="[0-9]"
       v-model="model"
+      :class="inputClasses"
       @input="handleOnChange"
       @keydown="handleOnKeyDown"
       @paste="handleOnPaste"
@@ -38,8 +40,11 @@ export default {
     shouldAutoFocus: {
       type: Boolean,
     },
-    isInputNum: {
-      type: Boolean,
+    inputType: {
+      type: String,
+      default() {
+        return 'tel';
+      },
     },
     isLastChild: {
       type: Boolean,
@@ -93,7 +98,7 @@ export default {
     },
     isCodeNumeric(charCode) {
       // numeric keys and numpad keys
-      return (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105)
+      return (charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 105);
     },
     handleOnPaste(event) {
       return this.$emit('on-paste', event);

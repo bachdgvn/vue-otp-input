@@ -115,18 +115,18 @@ export default {
     <td>Style applied or class passed to each input.</td>
   </tr>
   <tr>
+      <td>input-type</td>
+      <td>string</td>
+      <td>false</td>
+      <td>"tel"</td>
+      <td>Input type. Optional value: "password", "number", "tel".</td>
+    </tr>
+  <tr>
     <td>should-auto-focus</td>
     <td>boolean</td>
     <td>false</td>
     <td>false</td>
     <td>Auto focuses input on inital page load.</td>
-  </tr>
-  <tr>
-    <td>is-input-num</td>
-    <td>boolean</td>
-    <td>false</td>
-    <td>false</td>
-    <td>Restrict input to only numbers.</td>
   </tr>
 </table>
 

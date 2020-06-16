@@ -1,15 +1,21 @@
 <template>
   <div style="display: flex">
+<!--    To turn off autocomplete when otp-input is password-->
+    <input v-if="inputType === 'password'"
+           autocomplete="off"
+           name="hidden"
+           type="text"
+           style="display:none;">
     <SingleOtpInput
       v-for="(item, i) in numInputs"
       :key="i"
       :focus="activeInput === i"
       :value="otp[i]"
       :separator="separator"
+      :input-type="inputType"
       :input-classes="inputClasses"
       :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
-      :is-input-num="isInputNum"
       @on-change="handleOnChange"
       @on-keydown="handleOnKeyDown"
       @on-paste="handleOnPaste"
@@ -44,8 +50,11 @@ export default {
     inputClasses: {
       type: String,
     },
-    isInputNum: {
-      type: Boolean,
+    inputType: {
+      type: String,
+      validator(value) {
+        return ['number', 'tel', 'password'].includes(value);
+      },
     },
     shouldAutoFocus: {
       type: Boolean,
@@ -59,6 +68,7 @@ export default {
       oldOtp: [],
     };
   },
+
   methods: {
     handleOnFocus(index) {
       this.activeInput = index;
@@ -101,7 +111,7 @@ export default {
         .getData('text/plain')
         .slice(0, this.numInputs - this.activeInput)
         .split('');
-      if (this.isInputNum && !pastedData.join('').match(/^\d+$/)) {
+      if (this.inputType === 'number' && !pastedData.join('').match(/^\d+$/)) {
         return 'Invalid pasted data';
       }
       // Paste data from focused input onwards
@@ -116,7 +126,7 @@ export default {
       this.focusNextInput();
     },
     clearInput() {
-      if(this.otp.length > 0) {
+      if (this.otp.length > 0) {
         this.$emit('on-change', '');
       }
       this.otp = [];
