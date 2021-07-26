@@ -14,6 +14,7 @@
       :separator="separator"
       :input-type="inputType"
       :input-classes="inputClasses"
+      :input-mode="inputMode"
       :is-last-child="i === numInputs - 1"
       :should-auto-focus="shouldAutoFocus"
       @on-change="handleOnChange"
@@ -54,6 +55,12 @@ export default {
       type: String,
       validator(value) {
         return ['number', 'tel', 'password'].includes(value);
+      },
+    },
+    inputMode: {
+      type: String,
+      validator(value) {
+        return ['text', 'numeric', 'tel', 'none'].includes(value);
       },
     },
     shouldAutoFocus: {
