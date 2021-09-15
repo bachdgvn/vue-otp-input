@@ -90,7 +90,9 @@ export default {
       if (this.isCodeNumeric(charCode)
           || (charCode === 8)
           || (charCode === 86)
-          || (charCode === 46)) {
+          || (charCode === 46)
+          || (charCode === 37)
+          || (charCode === 39)) {
         this.$emit('on-keydown', event);
       } else {
         keyEvent.preventDefault();
