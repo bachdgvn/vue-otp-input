@@ -84,13 +84,10 @@ export default {
       return this.$emit('on-change', this.model);
     },
     handleOnKeyDown(event) {
-      // Only allow characters 0-9, DEL, Backspace and Pasting
+      // Only allow characters 0-9, DEL, Backspace, Enter, Right and Left Arrows, and Pasting
       const keyEvent = (event) || window.event;
       const charCode = (keyEvent.which) ? keyEvent.which : keyEvent.keyCode;
-      if (this.isCodeNumeric(charCode)
-          || (charCode === 8)
-          || (charCode === 86)
-          || (charCode === 46)) {
+      if (this.isCodeNumeric(charCode) || [8, 9, 13, 37, 39, 46, 86].includes(charCode)) {
         this.$emit('on-keydown', event);
       } else {
         keyEvent.preventDefault();
