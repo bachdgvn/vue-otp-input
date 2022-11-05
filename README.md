@@ -122,11 +122,18 @@ export default {
       <td>Input type. Optional value: "password", "number", "tel".</td>
     </tr>
   <tr>
+      <td>input-mode</td>
+      <td>string</td>
+      <td>false</td>
+      <td>"text"</td>
+      <td>Input type. Optional value: "text", "numeric", "decimal", "none".</td>
+  </tr>
+  <tr>
     <td>should-auto-focus</td>
     <td>boolean</td>
     <td>false</td>
     <td>false</td>
-    <td>Auto focuses input on inital page load.</td>
+    <td>Auto focuses input on initial page load.</td>
   </tr>
 </table>
 

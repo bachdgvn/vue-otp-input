@@ -3,6 +3,7 @@
     <input
       ref="input"
       :type="inputType"
+      :inputmode="inputMode"
       min="0"
       max="9"
       maxlength="1"
@@ -44,6 +45,12 @@ export default {
       type: String,
       default() {
         return 'tel';
+      },
+    },
+    inputMode: {
+      type: String,
+      default() {
+        return 'text';
       },
     },
     isLastChild: {
