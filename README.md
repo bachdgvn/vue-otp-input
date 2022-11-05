@@ -166,5 +166,5 @@ export default {
 * **v1.0.6** - Add feature to disallow certain characters like "." or "e".
 * **v1.0.5** - Support clearInput() methods for clearing all otp inputs.
 * **v1.0.4** - Support @on-change event and fix bug for firing @on-complete every time we press keyboard.
-* **v1.0.3** - Fix fist and last character not being modified and pasting OTP codes.
+* **v1.0.3** - Fix first and last character not being modified and pasting OTP codes.
 * **v1.0.2** - Update first stable version.
